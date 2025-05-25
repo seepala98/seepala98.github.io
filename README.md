@@ -45,6 +45,13 @@ Welcome to my portfolio. I'm a Lead Data Engineer with 5+ years of experience de
 
 ---
 
+## 🎓 Education
+
+- 🎓 Master of Applied Computing – University of Windsor, Canada  
+- 🎓 Bachelor of Engineering in Computer Science – Sir MVIT, India
+
+---
+
 ## 🛠️ Skills & Tools
 
 - Languages: Python, Java, SQL, Terraform, KQL, PySpark, TypeScript
