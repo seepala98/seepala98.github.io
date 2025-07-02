@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
 
 :root {
@@ -28,7 +27,7 @@ body {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -86,41 +85,138 @@ main {
   border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem; /* Increased spacing between cards */
   box-shadow: 0 4px 15px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* --- Data Modeling Theme --- */
-.data-model-container {
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px var(--shadow-color);
+}
+
+/* --- Section Headings --- */
+h2 {
+  font-family: var(--font-mono);
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* --- Grid Layout for Main Sections --- */
+.main-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
     gap: 2rem;
-    align-items: start;
 }
 
-.data-fact {
-    grid-column: 1 / -1; /* Span all columns */
-    grid-row: 2;
+@media (min-width: 768px) {
+    .main-grid {
+        grid-template-columns: 2fr 1fr; /* Two columns for larger screens */
+    }
+    .main-grid > section:first-child { /* Experience section takes full width on larger screens */
+        grid-column: 1 / -1;
+    }
+}
+
+@media (min-width: 1024px) {
+    .main-grid {
+        grid-template-columns: 3fr 1fr; /* Adjust column ratio for very large screens */
+    }
+}
+
+/* --- Specific Section Styling --- */
+.experience-section .card {
     border-left: 4px solid var(--primary-color);
 }
 
-.data-dimension {
+.skills-education-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .skills-education-grid {
+        grid-template-columns: 1fr; /* Stack on medium screens */
+    }
+}
+
+.skills-section .card, .education-section .card {
     border-left: 4px solid var(--secondary-color);
 }
 
-.data-dimension h3, .data-fact h3 {
-    font-family: var(--font-mono);
-    margin-bottom: 1rem;
-}
-
-.data-dimension ul, .data-fact ul {
+.skills-section ul, .education-section ul {
     list-style: none;
     padding-left: 0;
 }
 
-.data-dimension li, .data-fact li {
+.skills-section li, .education-section li {
     margin-bottom: 0.5rem;
+}
+
+/* --- GitHub Repos Section --- */
+.github-repos .repo {
+    border-left: 4px solid var(--primary-color);
+}
+
+.github-repos .repo h3 a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.github-repos .repo p {
+    font-size: 0.9rem;
+    color: var(--subtle-text-color);
+}
+
+/* --- Blog Post List --- */
+.latest-posts ul {
+  list-style: none;
+}
+
+.latest-posts li {
+    margin-bottom: 0.75rem;
+}
+
+.latest-posts li a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.latest-posts li a:hover {
+  color: var(--primary-color);
+}
+
+.latest-posts li span {
+  color: var(--subtle-text-color);
+  margin-left: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border-color);
+  color: var(--subtle-text-color);
+  margin-top: 3rem;
+}
+
+.social-links a {
+  color: var(--subtle-text-color);
+  margin: 0 10px;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: var(--primary-color);
 }
 
 /* --- Fade-in Animation --- */
