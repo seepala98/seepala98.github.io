@@ -1,3 +1,4 @@
+
 let scene, camera, renderer, cubes;
 
 function init() {
@@ -6,6 +7,9 @@ function init() {
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
+
+    // Temporary: Set a distinct background color to see if the canvas renders
+    renderer.setClearColor(0xff0000, 0.5); // Red with 50% opacity
 
     // Position the renderer behind other content
     renderer.domElement.style.position = 'fixed';
