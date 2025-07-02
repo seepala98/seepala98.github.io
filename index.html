@@ -1,101 +1,74 @@
-<section class="bio card">
-  <h2>Hi, I'm Vardhan Seepala</h2>
-  <p><strong>Lead Data Engineer | Cloud & Big Data Architect | Streaming Pipelines | MLOps | AI-Driven Platforms</strong></p>
-  <p>Welcome to my portfolio. I'm a Lead Data Engineer with 5+ years of experience designing, building, and optimizing data platforms that deliver business value at scale. I specialize in building real-time and batch data pipelines, automating cloud infrastructure, deploying machine learning models in production, and translating complex requirements into secure, maintainable data solutions.</p>
-  <hr>
-  
-  <h3>What I Do Best</h3>
-  <ul>
-    <li>Architect end-to-end cloud-native data solutions across GCP, Azure, and AWS</li>
-    <li>Design high-volume streaming pipelines with Apache Beam, Kafka, and Dataflow</li>
-    <li>Automate data ingestion, transformation, and AI model deployment at scale</li>
-    <li>Optimize ETL/ELT pipelines for cost, latency, and reliability</li>
-    <li>Champion data quality, governance, and analytics enablement</li>
-    <li>Mentor cross-functional teams in adopting best practices for modern data platforms</li>
-  </ul>
-  <hr>
+---
+layout: default
+title: Home
+---
 
-  <h3>Experience Snapshot</h3>
-  
-  <h4>Lead Data Engineer @ Viral Nation (Jun 2023 – Present)</h4>
-  <ul>
-    <li>Designed CDC pipelines (Cloud SQL → BigQuery) using GCP Datastream; reduced transformation overhead by 40%</li>
-    <li>Automated infrastructure setup via Terraform with private VPC provisioning</li>
-    <li>Developed real-time Dataflow pipelines with Apache Beam for MongoDB/Postgres → BigQuery ingestion</li>
-    <li>Unified 10+ sources into DBT semantic layers; reduced analytics errors by 80%</li>
-    <li>Engineered PySpark pipelines in Azure Synapse for campaign analytics with Looker dashboards</li>
-    <li>Led MLOps deployments via Azure ML Studio & Kubernetes, reducing time-to-market by 35%</li>
-    <li>Built Kafka-based model-serving pipelines for brand detection and profanity filtering (1M+ daily events)</li>
-  </ul>
+<div class="data-model-container">
 
-  <h4>Data Engineer Co-Op @ BDO (Jan 2023 – Apr 2023)</h4>
-  <ul>
-    <li>Rebuilt ADF pipelines, cutting processing time by 30% (13 → 9 hours)</li>
-    <li>Built real-time dashboards integrating digital twin & MQTT metrics via Power BI</li>
-    <li>Automated Azure Data Explorer queries using dynamic KQL generation</li>
-  </ul>
+  <!-- Dimension: About Me -->
+  <section class="card data-dimension fade-in-section">
+    <h3>DIM_ABOUT_ME</h3>
+    <p><strong>Lead Data Engineer</strong> with 5+ years of experience designing and building data platforms that drive business value at scale.</p>
+  </section>
 
-  <h4>Senior Software Engineer @ Oracle Cerner (2019 – 2021)</h4>
-  <ul>
-    <li>Designed cost-optimized AWS EMR data pipelines serving 10K+ patients daily</li>
-    <li>Automated CloudFormation stacks for IAM roles; reduced provisioning errors by 90%</li>
-    <li>Cut testing time by 70% with Java/Python test automation</li>
-    <li>Standardized international healthcare data across microservice APIs</li>
-  </ul>
+  <!-- Dimension: Skills -->
+  <section class="card data-dimension fade-in-section">
+    <h3>DIM_SKILLS</h3>
+    <ul>
+      <li><strong>Languages:</strong> Python, Java, SQL, Terraform</li>
+      <li><strong>Platforms:</strong> GCP, Azure, AWS</li>
+      <li><strong>Orchestration:</strong> Apache Beam, Airflow</li>
+      <li><strong>DevOps:</strong> Docker, Kubernetes, CI/CD</li>
+    </ul>
+  </section>
 
-  <h4>DevOps Engineering Intern @ Sigmoid (2019)</h4>
-  <ul>
-    <li>Built Datadog/Elasticsearch dashboards reducing AWS cluster downtime by 50%</li>
-    <li>Created PoC demos for clients that cut cluster costs by 20%</li>
-  </ul>
-  <hr>
+  <!-- Dimension: Education -->
+  <section class="card data-dimension fade-in-section">
+    <h3>DIM_EDUCATION</h3>
+    <ul>
+        <li>M.S. Applied Computing</li>
+        <li>B.E. Computer Science</li>
+    </ul>
+  </section>
 
-  <h3>Education</h3>
-  <ul>
-    <li>Master of Applied Computing – University of Windsor, Canada</li>
-    <li>Bachelor of Engineering in Computer Science – Sir MVIT, India</li>
-  </ul>
-  <hr>
+  <!-- Fact: Experience -->
+  <section class="card data-fact fade-in-section">
+    <h3>FACT_EXPERIENCE</h3>
+    
+    <h4>Lead Data Engineer @ Viral Nation (Jun 2023 – Present)</h4>
+    <ul>
+      <li><strong>Metric:</strong> Reduced transformation overhead by 40% with GCP Datastream.</li>
+      <li><strong>Metric:</strong> Cut analytics errors by 80% by unifying sources into DBT semantic layers.</li>
+      <li><strong>Metric:</strong> Decreased time-to-market by 35% with MLOps deployments.</li>
+    </ul>
 
-  <h3>Skills & Tools</h3>
-  <ul>
-    <li><strong>Languages:</strong> Python, Java, SQL, Terraform, KQL, PySpark, TypeScript</li>
-    <li><strong>Data Platforms:</strong> GCP (BigQuery, Dataflow, Datastream), Azure (ADF, Databricks, Synapse), AWS (EMR, Lambda, S3)</li>
-    <li><strong>Orchestration:</strong> Apache Beam, Airflow, Azure ML Studio</li>
-    <li><strong>DevOps & Infra:</strong> Docker, Kubernetes, GitHub Actions, CloudFormation</li>
-    <li><strong>Visualization:</strong> Looker, Power BI</li>
-    <li><strong>Databases:</strong> PostgreSQL, MS-SQL, MongoDB, NoSQL</li>
-    <li><strong>Methodologies:</strong> Agile, Scrum, CI/CD, IaC</li>
-  </ul>
-  <hr>
+    <h4>Data Engineer Co-Op @ BDO (Jan 2023 – Apr 2023)</h4>
+    <ul>
+      <li><strong>Metric:</strong> Slashed ADF pipeline processing time by 30%.</li>
+    </ul>
 
-  <h3>Resume & Contact</h3>
-  <ul>
-    <li><a href="mailto:seepalavardhan98@gmail.com">View My Resume</a> or request it via email</li>
-    <li>LinkedIn: <a href="https://www.linkedin.com/in/vardhan-seepala-71179710b" target="_blank">linkedin.com/in/vardhan-seepala-71179710b</a></li>
-    <li>GitHub: <a href="https://github.com/seepala98" target="_blank">github.com/seepala98</a></li>
-    <li>Email: seepalavardhan98 @gmail.com</li>
-  </ul>
-  <hr>
+    <h4>Senior Software Engineer @ Oracle Cerner (2019 – 2021)</h4>
+    <ul>
+        <li><strong>Metric:</strong> Reduced infrastructure provisioning errors by 90%.</li>
+        <li><strong>Metric:</strong> Cut testing time by 70% with test automation.</li>
+    </ul>
+  </section>
 
-  <h3>Let’s Connect</h3>
-  <p>I'm actively exploring opportunities where I can lead or contribute to data platforms powering intelligent products. If you're building in cloud, AI, or data infrastructure and need someone who can architect and execute at scale—let’s talk.</p>
-  <p>Feel free to fork or follow for upcoming projects and case studies.</p>
-</section>
+</div>
 
-<section class="data-visualization">
+<section class="data-visualization fade-in-section">
     <h2>My Language Toolkit</h2>
     <div class="card">
         <canvas id="language-chart"></canvas>
     </div>
 </section>
 
-<section class="github-repos">
+<section class="github-repos fade-in-section">
   <h2>Recent GitHub Projects</h2>
   <div id="github-repos-container"></div>
 </section>
 
-<section class="latest-posts">
+<section class="latest-posts fade-in-section">
   <h2>Latest Blog Posts</h2>
   <div class="card">
       <ul>
