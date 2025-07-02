@@ -1,14 +1,16 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
 
 :root {
-  --primary-color: #00a8ff; /* Bright blue for accents */
-  --secondary-color: #4dffb8; /* A minty green for contrast */
-  --background-color: #1a1a1a;
-  --surface-color: #2c2c2c;
-  --text-color: #f0f0f0;
-  --subtle-text-color: #a0a0a0;
-  --border-color: #444;
-  --shadow-color: rgba(0, 0, 0, 0.5);
+  /* VSCode Dark Theme Inspired */
+  --primary-color: #569cd6; /* VSCode Blue */
+  --secondary-color: #4ec9b0; /* VSCode Green */
+  --background-color: #1e1e1e; /* VSCode Background */
+  --surface-color: #252526; /* VSCode Editor Background */
+  --text-color: #d4d4d4; /* VSCode Default Text */
+  --subtle-text-color: #808080; /* VSCode Comments/Subtle */
+  --border-color: #333333; /* Darker border for separation */
+  --shadow-color: rgba(0, 0, 0, 0.3); /* Softer shadow */
   --font-main: 'Roboto', sans-serif;
   --font-mono: 'Roboto Mono', monospace;
 }
@@ -164,12 +166,12 @@ main {
 
 .card {
   background-color: var(--surface-color);
-  border: 1px solid var(--border-color);
+  /* Removed border: 1px solid var(--border-color); */
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 1.5rem; /* Increased spacing between cards */
   box-shadow: 0 4px 15px var(--shadow-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s, border-color 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s, border-color 0.3s; /* Added box-shadow to transition */
 }
 
 .card:hover {
@@ -185,21 +187,25 @@ h2 {
   padding-bottom: 0.5rem;
   margin-bottom: 2rem;
   text-align: center;
-  font-size: 2rem; /* Make headings stand out */
+  font-size: 2.2rem; /* Slightly larger for more prominence */
+  font-weight: 700; /* Bolder */
+  letter-spacing: 0.05em; /* Add some spacing */
 }
 
 h3 {
     font-family: var(--font-mono);
     color: var(--secondary-color);
     margin-bottom: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.6rem; /* Slightly larger */
+    font-weight: 700;
 }
 
 h4 {
     font-family: var(--font-main);
     color: var(--text-color);
     margin-bottom: 0.75rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem; /* Slightly larger */
+    font-weight: 600;
 }
 
 /* --- Grid Layout for Main Sections (now single column) --- */
@@ -308,7 +314,7 @@ footer {
 /* --- Fade-in Animation (Zoom) --- */
 .fade-in-section {
     opacity: 0;
-    transform: translateY(20px) scale(0.95); /* Initial state: slightly smaller and lower */
+    transform: translateY(20px) scale(0.98); /* Initial state: slightly smaller and lower */
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
