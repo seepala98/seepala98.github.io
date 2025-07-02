@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
 
 :root {
@@ -95,25 +96,62 @@ header nav a:hover {
   color: var(--background-color);
 }
 
-/* Theme Toggle Button */
-#theme-toggle {
+/* Theme Toggle Slider */
+.theme-switch-wrapper {
   position: absolute;
   top: 20px;
   right: 20px;
-  background: var(--surface-color);
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
-#theme-toggle:hover {
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
   background-color: var(--primary-color);
-  color: var(--background-color);
-  border-color: var(--primary-color);
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  width: 26px;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+  background-color: var(--background-color);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 
 /* --- Main Content & Cards --- */
