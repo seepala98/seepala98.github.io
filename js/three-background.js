@@ -1,3 +1,4 @@
+
 let scene, camera, renderer, cubes;
 let ambientLight, directionalLight;
 
@@ -28,7 +29,7 @@ function init() {
 
     for (let i = 0; i < 50; i++) {
         const material = new THREE.MeshStandardMaterial({
-            color: 0x00a8ff, // Primary color (will be updated by theme)
+            color: 0x00a8ff, // Default color, will be updated by theme
             roughness: 0.4,
             metalness: 0.1,
             transparent: true,
@@ -60,10 +61,13 @@ function init() {
 
 function updateCubeColors() {
     const isLightMode = document.body.classList.contains('light-mode');
-    // Get computed style for primary color
+    // Get computed style for primary and secondary colors
     const primaryColor = getComputedStyle(document.body).getPropertyValue('--primary-color');
+    const secondaryColor = getComputedStyle(document.body).getPropertyValue('--secondary-color');
+
     cubes.forEach(cube => {
-        cube.material.color.set(primaryColor);
+        // Use secondary color for cubes in dark mode for better visibility
+        cube.material.color.set(isLightMode ? primaryColor : secondaryColor);
     });
 }
 
