@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
 
 :root {
@@ -24,6 +25,7 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
+  font-size: 1rem; /* Base font size */
 }
 
 .container {
@@ -160,6 +162,7 @@ h4 {
 
 .skills-section li, .education-section li {
     margin-bottom: 0.5rem;
+    font-size: 1rem; /* Explicitly set for consistency */
 }
 
 .skills-section li i {
@@ -221,7 +224,7 @@ footer {
 .social-links a {
   color: var(--subtle-text-color);
   margin: 0 10px;
-  font-size: 1.5rem;
+  font-size: 1.3rem; /* Adjusted for better icon sizing */
   transition: color 0.3s;
 }
 
