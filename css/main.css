@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
 
 :root {
@@ -126,26 +125,9 @@ h4 {
     font-size: 1.2rem;
 }
 
-/* --- Grid Layout for Main Sections --- */
+/* --- Grid Layout for Main Sections (now single column) --- */
 .main-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-@media (min-width: 768px) {
-    .main-grid {
-        grid-template-columns: 2fr 1fr; /* Two columns for larger screens */
-    }
-    .main-grid > section:first-child { /* Experience section takes full width on larger screens */
-        grid-column: 1 / -1;
-    }
-}
-
-@media (min-width: 1024px) {
-    .main-grid {
-        grid-template-columns: 3fr 1fr; /* Adjust column ratio for very large screens */
-    }
+    display: block; /* Changed to block to remove grid behavior */
 }
 
 /* --- Specific Section Styling --- */
@@ -165,17 +147,7 @@ h4 {
     padding-bottom: 0;
 }
 
-.skills-education-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-    .skills-education-grid {
-        grid-template-columns: 1fr; /* Stack on medium screens */
-    }
-}
+/* Removed .skills-education-grid as it's no longer needed for layout */
 
 .skills-section .card, .education-section .card {
     border-left: 4px solid var(--secondary-color);
