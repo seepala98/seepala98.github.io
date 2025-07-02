@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
 
 :root {
@@ -39,21 +40,26 @@ header {
   text-align: center;
 }
 
+header h1 {
+    margin-bottom: 0.5rem; /* Spacing for tagline */
+}
+
 header h1 a {
   font-family: var(--font-mono);
-  font-size: 2.5rem;
+  font-size: 2.8rem; /* Slightly larger for prominence */
   color: var(--primary-color);
   text-decoration: none;
   transition: text-shadow 0.3s ease;
 }
 
 header h1 a:hover {
-  text-shadow: 0 0 10px var(--primary-color);
+  text-shadow: 0 0 15px var(--primary-color);
 }
 
 header p {
   color: var(--subtle-text-color);
-  font-size: 1.1rem;
+  font-size: 1.2rem; /* Slightly larger tagline */
+  margin-top: 0;
 }
 
 header nav {
@@ -103,6 +109,21 @@ h2 {
   padding-bottom: 0.5rem;
   margin-bottom: 2rem;
   text-align: center;
+  font-size: 2rem; /* Make headings stand out */
+}
+
+h3 {
+    font-family: var(--font-mono);
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-family: var(--font-main);
+    color: var(--text-color);
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
 }
 
 /* --- Grid Layout for Main Sections --- */
@@ -132,6 +153,18 @@ h2 {
     border-left: 4px solid var(--primary-color);
 }
 
+.experience-section .job-entry {
+    margin-bottom: 1.5rem; /* Spacing between job entries */
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed var(--border-color); /* Subtle separator */
+}
+
+.experience-section .job-entry:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
 .skills-education-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -155,6 +188,11 @@ h2 {
 
 .skills-section li, .education-section li {
     margin-bottom: 0.5rem;
+}
+
+.skills-section li i {
+    margin-right: 0.5rem;
+    color: var(--primary-color);
 }
 
 /* --- GitHub Repos Section --- */
