@@ -6,7 +6,7 @@ function init() {
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+    document.getElementById('three-background-container').appendChild(renderer.domElement);
 
     // Position the renderer behind other content
     renderer.domElement.style.position = 'fixed';
@@ -28,7 +28,7 @@ function init() {
 
     for (let i = 0; i < 50; i++) {
         const material = new THREE.MeshStandardMaterial({
-            color: 0x00a8ff, // Primary color
+            color: 0x00a8ff, // Primary color (will be updated by theme)
             roughness: 0.4,
             metalness: 0.1,
             transparent: true,
@@ -60,7 +60,8 @@ function init() {
 
 function updateCubeColors() {
     const isLightMode = document.body.classList.contains('light-mode');
-    const primaryColor = isLightMode ? 0x007bff : 0x00a8ff; // Light mode blue vs dark mode blue
+    // Get computed style for primary color
+    const primaryColor = getComputedStyle(document.body).getPropertyValue('--primary-color');
     cubes.forEach(cube => {
         cube.material.color.set(primaryColor);
     });
