@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
 
 :root {
@@ -14,6 +13,18 @@
   --font-mono: 'Roboto Mono', monospace;
 }
 
+/* Light Mode Variables */
+body.light-mode {
+  --primary-color: #007bff;
+  --secondary-color: #28a745;
+  --background-color: #f8f9fa;
+  --surface-color: #ffffff;
+  --text-color: #212529;
+  --subtle-text-color: #6c757d;
+  --border-color: #dee2e6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -26,6 +37,7 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   font-size: 1rem; /* Base font size */
+  transition: background-color 0.3s, color 0.3s; /* Smooth theme transition */
 }
 
 .container {
@@ -39,6 +51,7 @@ header {
   padding: 2rem 0;
   border-bottom: 1px solid var(--border-color);
   text-align: center;
+  position: relative; /* For toggle button positioning */
 }
 
 header h1 {
@@ -82,6 +95,27 @@ header nav a:hover {
   color: var(--background-color);
 }
 
+/* Theme Toggle Button */
+#theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--surface-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+#theme-toggle:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border-color: var(--primary-color);
+}
+
 /* --- Main Content & Cards --- */
 main {
   padding: 2rem 0;
@@ -94,7 +128,7 @@ main {
   padding: 1.5rem;
   margin-bottom: 1.5rem; /* Increased spacing between cards */
   box-shadow: 0 4px 15px var(--shadow-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s, border-color 0.3s;
 }
 
 .card:hover {
@@ -148,8 +182,6 @@ h4 {
     margin-bottom: 0;
     padding-bottom: 0;
 }
-
-/* Removed .skills-education-grid as it's no longer needed for layout */
 
 .skills-section .card, .education-section .card {
     border-left: 4px solid var(--secondary-color);
@@ -224,24 +256,10 @@ footer {
 .social-links a {
   color: var(--subtle-text-color);
   margin: 0 10px;
-  font-size: 1.3rem; /* Adjusted for better icon sizing */
+  font-size: 1rem; /* Reduced for better icon sizing */
   transition: color 0.3s;
 }
 
 .social-links a:hover {
   color: var(--primary-color);
 }
-
-/* --- Fade-in Animation --- */
-.fade-in-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.fade-in-section.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
