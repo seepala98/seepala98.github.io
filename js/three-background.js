@@ -1,5 +1,5 @@
-
 let scene, camera, renderer, cubes;
+let ambientLight, directionalLight;
 
 function init() {
     scene = new THREE.Scene();
@@ -8,9 +8,6 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    // Temporary: Set a distinct background color to see if the canvas renders
-    renderer.setClearColor(0xff0000, 0.5); // Red with 50% opacity
-
     // Position the renderer behind other content
     renderer.domElement.style.position = 'fixed';
     renderer.domElement.style.top = '0';
@@ -18,11 +15,26 @@ function init() {
     renderer.domElement.style.zIndex = '-1';
     renderer.domElement.style.opacity = '0.15';
 
+    // Lights
+    ambientLight = new THREE.AmbientLight(0x404040); // soft white light
+    scene.add(ambientLight);
+
+    directionalLight = new THREE.DirectionalLight(0xffffff, 0.5); // white directional light
+    directionalLight.position.set(1, 1, 1).normalize();
+    scene.add(directionalLight);
+
     cubes = [];
     const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00a8ff, wireframe: true });
 
     for (let i = 0; i < 50; i++) {
+        const material = new THREE.MeshStandardMaterial({
+            color: 0x00a8ff, // Primary color
+            roughness: 0.4,
+            metalness: 0.1,
+            transparent: true,
+            opacity: 0.6,
+            wireframe: true // Keep wireframe for data-like feel
+        });
         const cube = new THREE.Mesh(geometry, material);
         cube.position.set(
             (Math.random() - 0.5) * 20,
@@ -40,8 +52,29 @@ function init() {
 
     camera.position.z = 5;
 
+    // Initial theme color for cubes
+    updateCubeColors();
+
     animate();
 }
+
+function updateCubeColors() {
+    const isLightMode = document.body.classList.contains('light-mode');
+    const primaryColor = isLightMode ? 0x007bff : 0x00a8ff; // Light mode blue vs dark mode blue
+    cubes.forEach(cube => {
+        cube.material.color.set(primaryColor);
+    });
+}
+
+// Listen for theme changes
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach(mutation => {
+        if (mutation.attributeName === 'class') {
+            updateCubeColors();
+        }
+    });
+});
+observer.observe(document.body, { attributes: true });
 
 function animate() {
     requestAnimationFrame(animate);

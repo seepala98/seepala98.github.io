@@ -1,21 +1,22 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-    const toggleButton = document.getElementById('theme-toggle');
+    const toggleCheckbox = document.getElementById('checkbox');
     const body = document.body;
 
     // Check for saved theme preference, default to dark
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'light-mode') {
         body.classList.add('light-mode');
+        toggleCheckbox.checked = true;
+    } else {
+        toggleCheckbox.checked = false;
     }
 
-    toggleButton.addEventListener('click', () => {
-        body.classList.toggle('light-mode');
-
-        // Save theme preference
-        if (body.classList.contains('light-mode')) {
+    toggleCheckbox.addEventListener('change', () => {
+        if (toggleCheckbox.checked) {
+            body.classList.add('light-mode');
             localStorage.setItem('theme', 'light-mode');
         } else {
+            body.classList.remove('light-mode');
             localStorage.setItem('theme', 'dark-mode');
         }
     });
