@@ -1,0 +1,47 @@
+
+title: Vardhan Seepala
+description: Lead Data Engineer | Portfolio & Blog
+theme: jekyll-theme-minimal
+author:
+  name: Vardhan Seepala
+  email: seepalavardhan@gmail.com
+  github: seepala98
+  linkedin: vardhan-seepala-71179710b
+
+# Social links
+social:
+  - title: GitHub
+    url: https://github.com/seepala98
+  - title: LinkedIn
+    url: https://www.linkedin.com/in/vardhan-seepala-71179710b/
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Portfolio
+    url: /portfolio/
+  - title: Blog
+    url: /blog/
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:title/
+  portfolio:
+    output: true
+    permalink: /portfolio/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "portfolio"
+    values:
+      layout: "project"

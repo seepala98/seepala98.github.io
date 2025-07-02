@@ -1,0 +1,16 @@
+
+---
+layout: default
+title: Portfolio
+---
+
+<h2>Portfolio</h2>
+
+<ul>
+  {% for project in site.portfolio %}
+    <li>
+      <a href="{{ project.url }}">{{ project.title }}</a>
+      <span>{{ project.date | date: "%B %d, %Y" }}</span>
+    </li>
+  {% endfor %}
+</ul>
