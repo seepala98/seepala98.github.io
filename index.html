@@ -4,44 +4,91 @@ layout: default
 title: Home
 ---
 
-<section class="bio">
+<section class="bio card">
   <h2>About Me</h2>
   <p>I'm a passionate Data Engineer with a focus on building robust and scalable data pipelines. I have experience with a variety of tools and technologies, including Python, SQL, Spark, and Airflow. I'm always looking for new challenges and opportunities to learn and grow.</p>
 </section>
 
+<section class="data-visualization">
+    <h2>My Language Toolkit</h2>
+    <div class="card">
+        <canvas id="language-chart"></canvas>
+    </div>
+</section>
+
 <section class="github-repos">
-  <h2>Recent GitHub Repositories</h2>
+  <h2>Recent GitHub Projects</h2>
   <div id="github-repos-container"></div>
 </section>
 
 <section class="latest-posts">
   <h2>Latest Blog Posts</h2>
-  <ul>
-    {% for post in site.posts limit:5 %}
-      <li>
-        <a href="{{ post.url }}">{{ post.title }}</a>
-        <span>{{ post.date | date: "%B %d, %Y" }}</span>
-      </li>
-    {% endfor %}
-  </ul>
+  <div class="card">
+      <ul>
+        {% for post in site.posts limit:5 %}
+          <li>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+            <span>{{ post.date | date: "%B %d, %Y" }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+  </div>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  async function fetchGitHubRepos() {
+  async function fetchData() {
     const username = '{{ site.author.github }}';
-    const response = await fetch(`https://api.github.com/users/${username}/repos?sort=pushed&per_page=5`);
+    const response = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
     const repos = await response.json();
+
+    // --- Process for Language Chart ---
+    const languageCounts = repos.reduce((acc, repo) => {
+        if (repo.language) {
+            acc[repo.language] = (acc[repo.language] || 0) + 1;
+        }
+        return acc;
+    }, {});
+
+    const chartData = {
+        labels: Object.keys(languageCounts),
+        datasets: [{
+            label: 'Repositories by Language',
+            data: Object.values(languageCounts),
+            backgroundColor: '#00a8ff',
+            borderColor: '#2c2c2c',
+            borderWidth: 2
+        }]
+    };
+
+    const chartCtx = document.getElementById('language-chart').getContext('2d');
+    new Chart(chartCtx, {
+        type: 'bar',
+        data: chartData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // --- Process for Repo Cards ---
+    const sortedRepos = repos.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at)).slice(0, 5);
     const container = document.getElementById('github-repos-container');
 
-    repos.forEach(repo => {
+    sortedRepos.forEach(repo => {
       const repoEl = document.createElement('div');
+      repoEl.classList.add('card', 'repo');
       repoEl.innerHTML = `
-        <h3><a href="${repo.html_url}">${repo.name}</a></h3>
-        <p>${repo.description || ''}</p>
+        <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+        <p>${repo.description || 'No description available.'}</p>
+        <p class="repo-meta"><strong>Language:</strong> ${repo.language || 'N/A'} | <strong>Stars:</strong> ${repo.stargazers_count}</p>
       `;
       container.appendChild(repoEl);
     });
   }
 
-  fetchGitHubRepos();
+  fetchData();
 </script>

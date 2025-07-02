@@ -1,61 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background-color: #f4f4f4;
+:root {
+  --primary-color: #00a8ff; /* Bright blue for accents */
+  --background-color: #1a1a1a; /* Dark background */
+  --surface-color: #2c2c2c; /* For cards and surfaces */
+  --text-color: #f0f0f0; /* Light text */
+  --subtle-text-color: #a0a0a0; /* For metadata */
+  --border-color: #444;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --font-main: 'Roboto', sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+body {
+  font-family: var(--font-main);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 2rem;
 }
 
+/* --- Header --- */
 header {
-  background: #333;
-  color: #fff;
-  padding: 1rem 0;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border-color);
+  text-align: center;
 }
 
-header h1 {
-  margin: 0;
-}
-
-header a {
-  color: #fff;
+header h1 a {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  color: var(--primary-color);
   text-decoration: none;
+  transition: text-shadow 0.3s ease;
+}
+
+header h1 a:hover {
+  text-shadow: 0 0 10px var(--primary-color);
+}
+
+header p {
+  color: var(--subtle-text-color);
+  font-size: 1.1rem;
+}
+
+header nav {
+  margin-top: 1.5rem;
 }
 
 header nav a {
-  margin-right: 15px;
+  font-family: var(--font-mono);
+  color: var(--text-color);
+  text-decoration: none;
+  margin: 0 15px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
+header nav a:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+/* --- Main Content & Cards --- */
 main {
-  background: #fff;
-  padding: 20px;
+  padding: 2rem 0;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #333;
-  color: #fff;
+section {
+  margin-bottom: 3rem;
 }
 
-.social-links a {
-  margin: 0 10px;
-  color: #fff;
+h2 {
+  font-family: var(--font-mono);
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px var(--shadow-color);
+}
+
+/* --- GitHub Repos Section --- */
+#github-repos-container .repo {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.repo h3 a {
+  color: var(--primary-color);
   text-decoration: none;
 }
 
-.post, .project {
-  margin-bottom: 2em;
+.repo p {
+    font-size: 0.9rem;
+    color: var(--subtle-text-color);
 }
 
-.post-meta, .project-meta {
-  color: #666;
-  font-size: 0.9em;
+/* --- Blog Post List --- */
+.latest-posts ul {
+  list-style: none;
+}
+
+.latest-posts li a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.latest-posts li a:hover {
+  color: var(--primary-color);
+}
+
+.latest-posts li span {
+  color: var(--subtle-text-color);
+  margin-left: 1rem;
+  font-family: var(--font-mono);
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border-color);
+  color: var(--subtle-text-color);
+}
+
+.social-links a {
+  color: var(--subtle-text-color);
+  margin: 0 10px;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: var(--primary-color);
+}
+
+/* --- Canvas for background --- */
+#matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.15;
 }
