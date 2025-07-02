@@ -5,9 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }} | {{ site.title }}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
+  <canvas id="matrix-bg"></canvas>
+
   <header>
     <div class="container">
       <h1><a href="/">{{ site.author.name }}</a></h1>
@@ -36,5 +39,7 @@
       </div>
     </div>
   </footer>
+
+  <script src="/js/matrix.js"></script>
 </body>
 </html>
