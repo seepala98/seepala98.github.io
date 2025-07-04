@@ -38,6 +38,7 @@ The client faced critical data management challenges:
 ### Hub Implementation
 ```sql
 -- Customer Hub - Business Key registry
+{% raw %}
 {{ config(
     materialized='incremental',
     unique_key='customer_hk',
@@ -54,11 +55,13 @@ WHERE customer_id IS NOT NULL
 {% if is_incremental() %}
     AND load_date >= (SELECT MAX(load_date) FROM {{ this }})
 {% endif %}
+{% endraw %}
 ```
 
 ### Link Implementation
 ```sql
 -- Customer-Order Link - Relationships
+{% raw %}
 {{ config(
     materialized='incremental',
     unique_key='customer_order_hk'
@@ -75,11 +78,13 @@ WHERE customer_id IS NOT NULL AND order_id IS NOT NULL
 {% if is_incremental() %}
     AND load_date >= (SELECT MAX(load_date) FROM {{ this }})
 {% endif %}
+{% endraw %}
 ```
 
 ### Satellite Implementation
 ```sql
 -- Customer Satellite - Descriptive attributes
+{% raw %}
 {{ config(
     materialized='incremental',
     unique_key=['customer_hk', 'load_date']
@@ -104,6 +109,7 @@ JOIN {{ ref('hub_customer') }} h ON c.customer_id = h.customer_bk
 {% if is_incremental() %}
     WHERE c.load_date >= (SELECT MAX(load_date) FROM {{ this }})
 {% endif %}
+{% endraw %}
 ```
 
 ### Airflow DAG for Data Vault Loading
@@ -201,6 +207,7 @@ load_hubs >> load_links >> load_satellites >> load_business_vault >> load_marts 
 ### Multi-Active Satellite Pattern
 ```sql
 -- Handling multi-active records (e.g., customer addresses)
+{% raw %}
 {{ config(
     materialized='incremental',
     unique_key=['customer_hk', 'address_type', 'load_date']
@@ -223,11 +230,13 @@ SELECT
     record_source
 FROM {{ source('staging', 'customer_addresses') }}
 WHERE customer_hk IS NOT NULL
+{% endraw %}
 ```
 
 ### Same-As Link Pattern
 ```sql
 -- Handling duplicate detection and customer matching
+{% raw %}
 {{ config(
     materialized='incremental',
     unique_key='customer_same_as_hk'
@@ -243,6 +252,7 @@ SELECT
     record_source
 FROM {{ ref('customer_deduplication') }}
 WHERE confidence_score >= 0.95
+{% endraw %}
 ```
 
 ## Data Quality & Governance 📋
@@ -254,11 +264,11 @@ def test_hub_integrity():
     """Test hub business key uniqueness and not null"""
     query = """
     SELECT COUNT(*) as violations
-    FROM {{ ref('hub_customer') }}
+    FROM {% raw %}{{ ref('hub_customer') }}{% endraw %}
     WHERE customer_bk IS NULL
     OR customer_bk IN (
         SELECT customer_bk
-        FROM {{ ref('hub_customer') }}
+        FROM {% raw %}{{ ref('hub_customer') }}{% endraw %}
         GROUP BY customer_bk
         HAVING COUNT(*) > 1
     )
@@ -269,7 +279,7 @@ def test_satellite_hashdiff():
     """Test satellite hashdiff calculation"""
     query = """
     SELECT COUNT(*) as violations
-    FROM {{ ref('sat_customer') }}
+    FROM {% raw %}{{ ref('sat_customer') }}{% endraw %}
     WHERE hashdiff IS NULL
     OR hashdiff = ''
     """
@@ -279,9 +289,9 @@ def test_link_referential_integrity():
     """Test link references valid hubs"""
     query = """
     SELECT COUNT(*) as violations
-    FROM {{ ref('link_customer_order') }} l
-    LEFT JOIN {{ ref('hub_customer') }} hc ON l.customer_hk = hc.customer_hk
-    LEFT JOIN {{ ref('hub_order') }} ho ON l.order_hk = ho.order_hk
+    FROM {% raw %}{{ ref('link_customer_order') }}{% endraw %} l
+    LEFT JOIN {% raw %}{{ ref('hub_customer') }}{% endraw %} hc ON l.customer_hk = hc.customer_hk
+    LEFT JOIN {% raw %}{{ ref('hub_order') }}{% endraw %} ho ON l.order_hk = ho.order_hk
     WHERE hc.customer_hk IS NULL OR ho.order_hk IS NULL
     """
     return query
@@ -311,11 +321,11 @@ SELECT
     'Direct load with business key normalization' as transformation_logic,
     CURRENT_TIMESTAMP() as load_timestamp,
     COUNT(*) as record_count,
-    {{ calculate_quality_score() }} as data_quality_score,
+    {% raw %}{{ calculate_quality_score() }}{% endraw %} as data_quality_score,
     'dbt_process' as created_by,
     CURRENT_TIMESTAMP() as created_date
-FROM {{ ref('hub_customer') }}
-WHERE load_date = '{{ var("load_date") }}';
+FROM {% raw %}{{ ref('hub_customer') }}{% endraw %}
+WHERE load_date = '{% raw %}{{ var("load_date") }}{% endraw %}';
 ```
 
 ## Challenges & Solutions 🔧
@@ -340,6 +350,7 @@ WHERE load_date = '{{ var("load_date") }}';
 ### Dimensional Model Implementation
 ```sql
 -- Customer dimension from Data Vault
+{% raw %}
 {{ config(
     materialized='table',
     cluster_by=['customer_key']
@@ -364,11 +375,13 @@ SELECT
 FROM {{ ref('hub_customer') }} hc
 JOIN {{ ref('sat_customer') }} sc ON hc.customer_hk = sc.customer_hk
 WHERE sc.is_current = TRUE
+{% endraw %}
 ```
 
 ### Real-time Data Mart
 ```sql
 -- Real-time customer analytics
+{% raw %}
 {{ config(
     materialized='incremental',
     unique_key='customer_hk',
@@ -391,6 +404,7 @@ LEFT JOIN {{ ref('fact_orders') }} o ON c.customer_key = o.customer_key
 WHERE o.order_date >= (SELECT MAX(last_order_date) FROM {{ this }})
 {% endif %}
 GROUP BY c.customer_hk, c.customer_id, c.customer_name
+{% endraw %}
 ```
 
 ## Future Enhancements 🚀

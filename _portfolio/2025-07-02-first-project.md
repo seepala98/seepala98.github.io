@@ -44,6 +44,7 @@ def ProcessMarketingEvents(events):
 ### Data Modeling (dbt)
 ```sql
 -- Star schema fact table for campaign performance
+{% raw %}
 {{ config(
     materialized='incremental',
     unique_key='campaign_event_id',
@@ -64,6 +65,7 @@ select
     event_timestamp
 from {{ source('raw_events', 'marketing_events') }}
 where event_timestamp >= '{{ var("start_date") }}'
+{% endraw %}
 ```
 
 ### Infrastructure as Code (Terraform)
