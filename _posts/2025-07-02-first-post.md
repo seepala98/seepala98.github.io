@@ -105,6 +105,7 @@ CLUSTER BY (customer_hk, load_date);
 ### 2. **Incremental Loading with dbt**
 ```sql
 -- dbt incremental model for satellite loading
+{% raw %}
 {{ config(
     materialized='incremental',
     unique_key=['customer_hk', 'load_date'],
@@ -127,6 +128,7 @@ WHERE 1=1
 {% if is_incremental() %}
     AND load_date > (SELECT MAX(load_date) FROM {{ this }})
 {% endif %}
+{% endraw %}
 ```
 
 ### 3. **Hash Key Generation Best Practices**
@@ -164,6 +166,7 @@ Data Vault 2.0's strength lies in its ability to maintain data quality while pre
 ### Automated Quality Checks with dbt
 ```sql
 -- tests/generic/test_hub_integrity.sql
+{% raw %}
 {% test hub_business_key_integrity(model, column_name) %}
     -- Test that hub business keys are unique and not null
     SELECT {{ column_name }}
@@ -188,6 +191,7 @@ Data Vault 2.0's strength lies in its ability to maintain data quality while pre
        OR hashdiff = ''
        OR LENGTH(hashdiff) != 32
 {% endtest %}
+{% endraw %}
 ```
 
 ### Data Lineage Tracking
@@ -226,7 +230,7 @@ INSERT INTO data_lineage (
     'Direct mapping with business key normalization',
     CURRENT_TIMESTAMP(),
     (SELECT COUNT(*) FROM hub_customer WHERE load_date = CURRENT_DATE()),
-    {{ calculate_quality_score('hub_customer') }},
+    {% raw %}{{ calculate_quality_score('hub_customer') }}{% endraw %},
     CURRENT_DATE(),
     'etl_process_customer_load'
 );
@@ -258,7 +262,7 @@ WITH customer_timeline AS (
     JOIN sat_customer sc ON hc.customer_hk = sc.customer_hk
 )
 SELECT 
-    {{ dbt_utils.surrogate_key(['customer_hk', 'valid_from']) }} as customer_key,
+    {% raw %}{{ dbt_utils.surrogate_key(['customer_hk', 'valid_from']) }}{% endraw %} as customer_key,
     customer_id,
     first_name,
     last_name,
