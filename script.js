@@ -14,35 +14,98 @@ checkVisibility();
 
 // Expandable Experience Cards
 const experienceCards = document.querySelectorAll(".experience-card");
-if (experienceCards.length > 0) {
-    experienceCards[0].querySelector(".arrow").classList.add("pulse-hint");
+
+// Highlight the first card that actually has an arrow icon
+const firstArrowCard = Array.from(experienceCards).find(c => c.querySelector(".arrow"));
+if (firstArrowCard) {
+    const firstArrow = firstArrowCard.querySelector(".arrow");
+    firstArrow.classList.add("pulse-hint");
 }
+
 experienceCards.forEach(card => {
     const arrow = card.querySelector(".arrow");
+    const details = card.querySelector(".experience-details");
+    if (!details) return;
+
     card.addEventListener("click", () => {
-        const details = card.querySelector(".experience-details");
         details.classList.toggle("open");
         card.classList.toggle("open");
-        arrow.classList.remove("pulse-hint");
+        if (arrow) {
+            arrow.classList.remove("pulse-hint");
+        }
         card.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 });
 
 // Dark/Light Theme Toggle
 const themeToggle = document.getElementById("theme-toggle");
-if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-    themeToggle.checked = true;
-} else {
-    themeToggle.checked = false;
-}
-themeToggle.addEventListener("change", () => {
-    if (themeToggle.checked) {
+
+function applyTheme(theme) {
+    if (theme === "dark") {
         document.body.classList.add("dark");
-        localStorage.setItem("theme", "dark");
     } else {
         document.body.classList.remove("dark");
-        localStorage.setItem("theme", "light");
     }
-});
-``
+    if (themeToggle) {
+        themeToggle.checked = theme === "dark";
+    }
+}
+
+const storedTheme = localStorage.getItem("theme");
+const prefersDark =
+    window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+applyTheme(storedTheme ? storedTheme : prefersDark ? "dark" : "light");
+
+if (themeToggle) {
+    themeToggle.addEventListener("change", () => {
+        const nextTheme = themeToggle.checked ? "dark" : "light";
+        applyTheme(nextTheme);
+        localStorage.setItem("theme", nextTheme);
+    });
+}
+
+// Responsive Navbar Toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.getElementById('primary-navigation');
+
+function closeNav() {
+  if (!navLinks) return;
+  navLinks.classList.remove('open');
+  if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+function openNav() {
+  if (!navLinks) return;
+  navLinks.classList.add('open');
+  if (hamburger) hamburger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (navLinks.classList.contains('open')) {
+      closeNav();
+    } else {
+      openNav();
+    }
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!navLinks.classList.contains('open')) return;
+    const clickedInsideMenu = navLinks.contains(e.target) || hamburger.contains(e.target);
+    if (!clickedInsideMenu) closeNav();
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeNav();
+  });
+
+  // Close after clicking a link
+  navLinks.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => closeNav());
+  });
+}

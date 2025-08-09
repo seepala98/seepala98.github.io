@@ -26,6 +26,24 @@ body {
     align-items: center;
     padding: 0.8rem 1rem;
 }
+.hamburger {
+    display: none;
+    width: 40px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+.hamburger .bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    margin: 5px auto;
+    background-color: #0f172a;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
 .logo {
     font-weight: bold;
     font-size: 1.2rem;
@@ -48,6 +66,31 @@ body {
 }
 .nav-links li a:hover {
     color: #38bdf8;
+}
+
+/* Mobile nav */
+@media (max-width: 768px) {
+    .nav-container {
+        position: relative;
+    }
+    .hamburger { display: inline-block; }
+    .nav-links {
+        position: absolute;
+        top: 56px;
+        right: 12px;
+        left: 12px;
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { border-bottom: 1px solid #eee; }
+    .nav-links li:last-child { border-bottom: none; }
+    .nav-links li a { padding: 0.9rem 1rem; display: block; }
 }
 
 /* Theme Switch */
@@ -218,9 +261,21 @@ body.dark {
 body.dark header.hero { background-color: #1f2937; }
 body.dark .navbar { background-color: #1f2937; }
 body.dark .logo { color: #f3f4f6; }
+body.dark .nav-links li a { color: #e5e7eb; }
+body.dark .nav-links li a:hover { color: #93c5fd; }
+body.dark .hamburger .bar { background-color: #e5e7eb; }
+@media (max-width: 768px) {
+  body.dark .nav-links { background: #1f2937; box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+  body.dark .nav-links li { border-bottom: 1px solid #374151; }
+}
+body.dark h2 { border-bottom-color: #374151; }
+body.dark .keywords { color: #9ca3af; }
+body.dark .experience-header .duration { color: #9ca3af; }
 body.dark .experience-card,
 body.dark .experience-details ul li {
     background-color: #1f2937;
     color: #f3f4f6;
 }
-body.dark .exper
+body.dark .project-card { background-color: #1f2937; color: #f3f4f6; }
+body.dark footer.contact { background-color: #111827; color: #e5e7eb; }
+body.dark footer.contact a { color: #93c5fd; }
