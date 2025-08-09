@@ -26,6 +26,7 @@ navigation:
     url: /blog/
 
 # Collections
+# Collections
 collections:
   posts:
     output: true
@@ -46,3 +47,12 @@ defaults:
       type: "portfolio"
     values:
       layout: "project"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# GitHub Pages configuration
+github: [metadata]

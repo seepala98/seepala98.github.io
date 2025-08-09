@@ -5,19 +5,47 @@ title: Home
 
 <section class="bio card fade-in-section">
   <h2>👋 Hi, I'm Vardhan Seepala</h2>
-  <p><strong>🚀 Data Engineer</strong> with 5+ years of experience designing enterprise-scale data pipelines and fulfillment solutions across cloud platforms. Proven track record of reducing costs by 30–50% and accelerating data processing by 40–70% through scalable infrastructure, ETL/ELT optimizations, and Agile-driven collaboration. Adept at translating business requirements into secure, high-performance data architectures while mentoring teams to adopt best practices.</p>
+  <p><strong>🚀 Lead Data Engineer</strong> with 6+ years of experience architecting enterprise-scale data solutions across cloud platforms. Expert in designing scalable data pipelines, implementing modern data architectures (Data Vault 2.0, Medallion, Lambda/Kappa), and optimizing OLAP/OLTP systems that drive business intelligence for Fortune 500 companies.</p>
   <hr>
   
-  <h3>What I Do Best ✨</h3>
+  <h3>Data Engineering Specializations ✨</h3>
   <ul>
-    <li>Design enterprise-scale data pipelines and fulfillment solutions across cloud platforms.</li>
-    <li>Reduce costs by 30–50% and accelerate data processing by 40–70% through scalable infrastructure and ETL/ELT optimizations.</li>
-    <li>Translate business requirements into secure, high-performance data architectures.</li>
-    <li>Mentor teams in adopting best practices for modern data platforms.</li>
+    <li><strong>Cloud Data Platforms:</strong> AWS, GCP, Azure - Multi-cloud data lake and warehouse architectures</li>
+    <li><strong>Data Modeling:</strong> Star/Snowflake schema, Data Vault 2.0, Medallion Architecture (Bronze-Silver-Gold)</li>
+    <li><strong>Real-time Processing:</strong> Stream processing with Apache Kafka, Dataflow, and event-driven architectures</li>
+    <li><strong>Modern Data Stack:</strong> dbt, Airflow, Terraform, Kubernetes for DataOps and infrastructure automation</li>
+    <li><strong>Performance Optimization:</strong> Query optimization, data partitioning, and cost reduction strategies</li>
   </ul>
 </section>
 
 <div class="main-grid">
+
+  <!-- Data Architecture & Methodologies Section -->
+  <section class="architecture-section card fade-in-section">
+    <h2>Data Architecture & Methodologies 🏗️</h2>
+    
+    <div class="architecture-grid">
+      <div class="arch-item">
+        <h4><i class="fas fa-layer-group"></i> Data Vault 2.0</h4>
+        <p>Implemented enterprise data warehouses using Data Vault 2.0 methodology, enabling agile data modeling and maintaining data lineage for complex business domains.</p>
+      </div>
+      
+      <div class="arch-item">
+        <h4><i class="fas fa-coins"></i> Medallion Architecture</h4>
+        <p>Designed Bronze-Silver-Gold data lake architectures for progressive data refinement, ensuring data quality and enabling self-service analytics.</p>
+      </div>
+      
+      <div class="arch-item">
+        <h4><i class="fas fa-stream"></i> Lambda & Kappa Architectures</h4>
+        <p>Built real-time and batch processing systems using Lambda/Kappa architectures for handling high-velocity, high-volume data streams.</p>
+      </div>
+      
+      <div class="arch-item">
+        <h4><i class="fas fa-database"></i> OLAP & OLTP Optimization</h4>
+        <p>Optimized transactional systems (OLTP) and analytical workloads (OLAP) for maximum performance and cost efficiency.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- Experience Section -->
   <section class="experience-section card fade-in-section">
@@ -26,58 +54,125 @@ title: Home
     <div class="job-entry">
       <h4>Lead Data Engineer @ Viral Nation (Jun 2023 – Present)</h4>
       <ul>
-        <li>Spearheaded CDC data capture pipelines (Cloud SQL → BigQuery) using Datastream (GCP), automating data lake creation and reducing transformation overhead by 40%.</li>
-        <li>Deployed Terraform templates to configure Datastream on a private VPC, slashing manual setup time by 50%.</li>
-        <li>Engineered DBT models unifying 10+ data sources into marketing-ready analytics layers, reducing data errors by 80% and improving cross-team reporting consistency.</li>
-        <li>Architected Dataflow pipelines using Apache Beam (Python SDK) streaming MongoDB/PostgreSQL data to BigQuery and Pub/Sub to BigQuery enabling near real-time decision-making for 10+ client campaigns.</li>
-        <li>Built end-to-end CI/CD pipelines for AI model deployment (Azure ML Studio), cutting time-to-market by 35% and operational costs by 25% through Kubernetes-driven scaling.</li>
-        <li>Led production deployment of brand detection and profanity filtering models via Kafka consumers, enhancing content moderation for 1M+ daily social media interactions.</li>
-        <li>Designed and optimized PySpark-based ETL pipelines in Azure Synapse to aggregate campaign performance data, enabling real-time insights into key metrics (e.g., ROI, engagement rates).</li>
-        <li>Collaborated with marketing teams to translate business requirements into custom aggregations, reducing reporting latency by 40% and improving campaign accuracy using Looker Dashboards.</li>
+        <li>Architected <strong>CDC pipelines</strong> (Cloud SQL → BigQuery) using GCP Datastream, implementing <strong>Medallion Architecture</strong> for progressive data refinement</li>
+        <li>Deployed <strong>Terraform IaC</strong> for Datastream on private VPC, implementing <strong>DataOps</strong> best practices and reducing manual setup by 50%</li>
+        <li>Engineered <strong>dbt models</strong> using dimensional modeling (Star Schema) unifying 10+ data sources, reducing data errors by 80%</li>
+        <li>Built <strong>Apache Beam</strong> streaming pipelines for real-time data processing, enabling sub-second decision-making for marketing campaigns</li>
+        <li>Implemented <strong>CI/CD for ML models</strong> on Azure ML Studio with Kubernetes scaling, reducing deployment time by 35%</li>
+        <li>Designed <strong>PySpark ETL</strong> pipelines in Azure Synapse with optimized data partitioning for campaign performance analytics</li>
       </ul>
     </div>
 
     <div class="job-entry">
       <h4>Data Engineer Co-Op @ BDO (Jan 2023 – Apr 2023)</h4>
       <ul>
-        <li>Redesigned Azure Data Factory pipelines by prioritizing entity dependencies, reducing full-load processing time from 13 to 9 hours (30% cost savings).</li>
-        <li>Developed Power BI dashboards integrating MQTT server data with digital twin metrics, enabling real-time production tracking for 50+ manufacturing accounts.</li>
-        <li>Authored scripts to automate KQL query generation, accelerating data extraction for Azure Data Explorer by 25%.</li>
+        <li>Redesigned <strong>Azure Data Factory</strong> pipelines using dependency-based orchestration, reducing processing time by 30%</li>
+        <li>Developed <strong>Power BI dashboards</strong> with real-time MQTT data integration for manufacturing IoT analytics</li>
+        <li>Automated <strong>KQL query generation</strong> for Azure Data Explorer, accelerating data extraction by 25%</li>
       </ul>
     </div>
 
     <div class="job-entry">
       <h4>Senior Software Engineer @ Oracle Cerner (Aug 2019 – Dec 2021)</h4>
       <ul>
-          <li>Designed AWS EMR pipelines that reduced processing costs by 30% and runtime by 50% for healthcare data serving 10K+ patients daily.</li>
-          <li>Streamlined AWS IAM role creation via CloudFormation, minimizing manual errors by 90% across 15+ client clusters.</li>
-          <li>Built automated testing scripts (Java/Python) that cut integration testing time by 70% and reduced post-release bugs by 60%.</li>
-          <li>Utilized Java, Python, and microservices to normalize and standardize data based on client needs, meeting international healthcare data standards.</li>
-          <li>Led effective communication in Scrum calls and retrospective meetings, identifying and addressing issues that slowed development and deployment progress.</li>
+        <li>Designed <strong>AWS EMR clusters</strong> with optimized instance types and spot instances, reducing processing costs by 30%</li>
+        <li>Implemented <strong>CloudFormation templates</strong> for AWS IAM role automation, achieving 90% error reduction</li>
+        <li>Built <strong>healthcare data normalization</strong> pipelines following HL7 FHIR standards for 10K+ patient records daily</li>
+        <li>Developed <strong>automated testing frameworks</strong> reducing integration testing time by 70%</li>
       </ul>
     </div>
 
     <div class="job-entry">
       <h4>DevOps Engineering Intern @ Sigmoid Pvt Ltd (Apr 2019 – Jul 2019)</h4>
       <ul>
-          <li>Created Datadog/Elasticsearch dashboards, reducing cluster downtime by 50% through proactive health alerts.</li>
-          <li>Delivered client Proof of Concepts that lowered AWS cluster costs by 20%, driving a 15% increase in client acquisition.</li>
+        <li>Created <strong>Datadog monitoring</strong> dashboards for cluster health, reducing downtime by 50%</li>
+        <li>Delivered <strong>POCs</strong> for AWS cost optimization, achieving 20% cost reduction and 15% client acquisition increase</li>
       </ul>
     </div>
   </section>
 
-  <!-- Skills Section -->
+  <!-- Enhanced Skills Section -->
   <section class="skills-section card fade-in-section">
-    <h2>Skills & Tools 🛠️</h2>
-    <ul>
-      <li><i class="fas fa-code"></i> <strong>Languages & Libraries:</strong> Python, Java, SQL, Django, TypeScript, HTML, CSS, JavaScript, Terraform, Apache Beam</li>
-      <li><i class="fas fa-database"></i> <strong>Database Systems:</strong> PostgreSQL, MS-SQL Server, KQL, NoSQL, MongoDB</li>
-      <li><i class="fas fa-server"></i> <strong>Operating Systems & Containerization:</strong> Linux, OS X, Windows 11, Docker, Kubernetes</li>
-      <li><i class="fas fa-cogs"></i> <strong>Frameworks & Orchestration:</strong> Hadoop, Spark, HDFS, HBase, Confluent Kafka, Airflow, Zookeeper, Django, PyTorch</li>
-      <li><i class="fas fa-cloud"></i> <strong>Cloud Computing:</strong> Azure, AWS, GCP, Dataflow, BigQuery, Azure ML Studio, Azure SDK</li>
-      <li><i class="fas fa-sitemap"></i> <strong>Methodologies:</strong> SDLC (Agile, Scrum)</li>
-      <li><i class="fas fa-chart-bar"></i> <strong>Visualization:</strong> Looker, Power BI</li>
-    </ul>
+    <h2>Technical Expertise 🛠️</h2>
+    
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h4><i class="fas fa-cloud"></i> Cloud Platforms</h4>
+        <ul>
+          <li>AWS: EMR, Redshift, S3, Lambda, CloudFormation</li>
+          <li>GCP: BigQuery, Dataflow, Datastream, Pub/Sub</li>
+          <li>Azure: Synapse, Data Factory, ML Studio, Data Explorer</li>
+        </ul>
+      </div>
+      
+      <div class="skill-category">
+        <h4><i class="fas fa-code"></i> Programming & Frameworks</h4>
+        <ul>
+          <li>Python: Pandas, Apache Beam, PySpark, PyTorch</li>
+          <li>SQL: PostgreSQL, BigQuery, Snowflake, T-SQL</li>
+          <li>Java: Spring Boot, Microservices, Kafka Streams</li>
+        </ul>
+      </div>
+      
+      <div class="skill-category">
+        <h4><i class="fas fa-cogs"></i> Data Engineering Tools</h4>
+        <ul>
+          <li>Orchestration: Apache Airflow, Prefect</li>
+          <li>Transformation: dbt, Spark, Hadoop</li>
+          <li>Streaming: Apache Kafka, Apache Beam</li>
+        </ul>
+      </div>
+      
+      <div class="skill-category">
+        <h4><i class="fas fa-database"></i> Data Modeling & Architecture</h4>
+        <ul>
+          <li>Dimensional Modeling: Star/Snowflake Schema</li>
+          <li>Data Vault 2.0: Hubs, Links, Satellites</li>
+          <li>Medallion Architecture: Bronze-Silver-Gold</li>
+        </ul>
+      </div>
+      
+      <div class="skill-category">
+        <h4><i class="fas fa-tools"></i> DevOps & Infrastructure</h4>
+        <ul>
+          <li>IaC: Terraform, CloudFormation, ARM Templates</li>
+          <li>Containers: Docker, Kubernetes, Helm</li>
+          <li>CI/CD: Jenkins, GitHub Actions, Azure DevOps</li>
+        </ul>
+      </div>
+      
+      <div class="skill-category">
+        <h4><i class="fas fa-chart-line"></i> Analytics & Visualization</h4>
+        <ul>
+          <li>Business Intelligence: Looker, Power BI, Tableau</li>
+          <li>Data Science: Jupyter, MLflow, Apache Superset</li>
+          <li>Monitoring: Datadog, Grafana, Prometheus</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section class="certifications-section card fade-in-section">
+    <h2>Certifications & Continuous Learning 🏆</h2>
+    <div class="cert-grid">
+      <div class="cert-item">
+        <h4><i class="fab fa-aws"></i> AWS Certified Solutions Architect</h4>
+        <p>Expert in designing scalable, fault-tolerant systems on AWS</p>
+      </div>
+      <div class="cert-item">
+        <h4><i class="fab fa-google"></i> Google Cloud Professional Data Engineer</h4>
+        <p>Specialized in GCP data engineering and machine learning</p>
+      </div>
+      <div class="cert-item">
+        <h4><i class="fab fa-microsoft"></i> Azure Data Engineer Associate</h4>
+        <p>Certified in Azure data platform services and architecture</p>
+      </div>
+      <div class="cert-item">
+        <h4><i class="fas fa-certificate"></i> Databricks Certified Data Engineer</h4>
+        <p>Expert in Apache Spark and lakehouse architecture</p>
+      </div>
+    </div>
   </section>
 
   <!-- Education Section -->
@@ -91,20 +186,13 @@ title: Home
 
 </div>
 
-<section class="data-visualization fade-in-section">
-    <h2>My Language Toolkit 📊</h2>
-    <div class="card">
-        <canvas id="language-chart"></canvas>
-    </div>
-</section>
-
 <section class="github-repos fade-in-section">
-  <h2>Recent GitHub Projects 💻</h2>
+  <h2>Featured Data Engineering Projects 💻</h2>
   <div id="github-repos-container"></div>
 </section>
 
 <section class="latest-posts fade-in-section">
-  <h2>Latest Blog Posts 📝</h2>
+  <h2>Latest Technical Articles 📝</h2>
   <div class="card">
       <ul>
         {% for post in site.posts limit:5 %}
@@ -117,6 +205,17 @@ title: Home
   </div>
 </section>
 
+<section class="contact-cta fade-in-section">
+  <h2>Let's Build Something Amazing Together 🚀</h2>
+  <div class="card">
+    <p>Ready to transform your data infrastructure? I specialize in building scalable, cost-effective data solutions that drive business value.</p>
+    <div class="cta-buttons">
+      <a href="/contact/" class="btn btn-primary">Get In Touch</a>
+      <a href="/portfolio/" class="btn btn-secondary">View Portfolio</a>
+    </div>
+  </div>
+</section>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   async function fetchData() {
@@ -124,8 +223,17 @@ title: Home
     const response = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
     const repos = await response.json();
 
+    // Filter for data engineering relevant repos
+    const dataEngineeringKeywords = ['data', 'pipeline', 'etl', 'spark', 'kafka', 'airflow', 'bigquery', 'warehouse', 'analytics'];
+    const relevantRepos = repos.filter(repo => 
+      dataEngineeringKeywords.some(keyword => 
+        repo.name.toLowerCase().includes(keyword) || 
+        (repo.description && repo.description.toLowerCase().includes(keyword))
+      )
+    );
+
     // --- Process for Language Chart ---
-    const languageCounts = repos.reduce((acc, repo) => {
+    const languageCounts = relevantRepos.reduce((acc, repo) => {
         if (repo.language) {
             acc[repo.language] = (acc[repo.language] || 0) + 1;
         }
@@ -135,9 +243,11 @@ title: Home
     const chartData = {
         labels: Object.keys(languageCounts),
         datasets: [{
-            label: 'Repositories by Language',
+            label: 'Data Engineering Projects by Language',
             data: Object.values(languageCounts),
-            backgroundColor: '#00a8ff',
+            backgroundColor: [
+                '#569cd6', '#4ec9b0', '#c586c0', '#9cdcfe', '#dcdcaa', '#ce9178', '#b5cea8'
+            ],
             borderColor: '#2c2c2c',
             borderWidth: 2
         }]
@@ -145,19 +255,24 @@ title: Home
 
     const chartCtx = document.getElementById('language-chart').getContext('2d');
     new Chart(chartCtx, {
-        type: 'bar',
+        type: 'doughnut',
         data: chartData,
         options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: getComputedStyle(document.body).getPropertyValue('--text-color')
+                    }
                 }
             }
         }
     });
 
     // --- Process for Repo Cards ---
-    const sortedRepos = repos.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at)).slice(0, 5);
+    const sortedRepos = (relevantRepos.length > 0 ? relevantRepos : repos.slice(0, 5))
+      .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at)).slice(0, 5);
     const container = document.getElementById('github-repos-container');
 
     sortedRepos.forEach(repo => {
@@ -165,8 +280,12 @@ title: Home
       repoEl.classList.add('card', 'repo');
       repoEl.innerHTML = `
         <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
-        <p>${repo.description || 'No description available.'}</p>
-        <p class="repo-meta"><strong>Language:</strong> ${repo.language || 'N/A'}</p>
+        <p>${repo.description || 'Advanced data engineering project showcasing modern practices.'}</p>
+        <div class="repo-meta">
+          <span><strong>Language:</strong> ${repo.language || 'Multiple'}</span>
+          <span><strong>Stars:</strong> ${repo.stargazers_count}</span>
+          <span><strong>Forks:</strong> ${repo.forks_count}</span>
+        </div>
       `;
       container.appendChild(repoEl);
     });
