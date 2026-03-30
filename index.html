@@ -1,741 +1,1219 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vardhan Seepala | Lead Data Engineer</title>
-    <meta name="description" content="Lead Data Engineer building modern data platforms across AWS, Azure, and GCP.">
-
-    <!-- Fonts -->
+    <meta name="description" content="Portfolio of Vardhan Seepala - Lead Data Engineer specializing in cloud-native data platforms, streaming pipelines, and MLOps">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Custom Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        zinc: {
-                            950: '#0a0a0a', // Deep black-ish
-                        },
-                        neon: {
-                            DEFAULT: '#00FFFF', // Electric Blue / Cyan
-                            dim: 'rgba(0, 255, 255, 0.1)',
-                            glow: 'rgba(0, 255, 255, 0.5)',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --neon-accent: #00FFFF;
-            --bg-dark: #0a0a0a;
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-card: #161618;
+            --bg-card-hover: #1c1c1f;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #71717a;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --border: #27272a;
+            --border-light: #3f3f46;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --gradient-start: #3b82f6;
+            --gradient-end: #8b5cf6;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.5);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: #e4e4e7;
-            /* zinc-200 */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Background Grid */
-        .bg-grid {
-            background-size: 50px 50px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 11, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Glassmorphism */
-        .glass-panel {
-            background: rgba(24, 24, 27, 0.4);
-            /* zinc-900 with opacity */
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
         }
 
-        /* Neon Glows */
-        .neon-border {
-            transition: all 0.3s ease;
+        .nav-logo span {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .neon-border:hover,
-        .neon-border:focus {
-            border-color: var(--neon-accent);
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
         }
 
-        .neon-text-glow {
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            color: white !important;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-hover);
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, var(--accent-glow) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .hero-badge .dot {
             width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #0a0a0a;
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #3f3f46;
-            border-radius: 4px;
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--neon-accent);
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        /* Utility */
-        .clip-hex {
-            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-light);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
+            animation: fadeInUp 0.6s ease-out 0.4s both;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            margin-top: 0.25rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            padding: 4rem;
+            border: 1px solid var(--border);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .about-highlights {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .highlight-item:hover {
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+        }
+
+        .highlight-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-glow);
+            border-radius: var(--radius-sm);
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .highlight-text h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .highlight-text p {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            margin: 0;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .skill-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-glow);
+            border-radius: var(--radius-md);
+            font-size: 1.5rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.4rem 0.85rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        /* Experience Section */
+        .experience {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            padding: 4rem;
+            border: 1px solid var(--border);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 3rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--bg-secondary);
+            transform: translateX(-5px);
+        }
+
+        .timeline-header {
+            margin-bottom: 1rem;
+        }
+
+        .timeline-role {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-company {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .timeline-date {
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .timeline-achievements {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .timeline-achievements li {
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .timeline-achievements li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .project-icon {
+            font-size: 2rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .project-links a {
+            color: var(--text-tertiary);
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .project-links a:hover {
+            color: var(--accent);
+        }
+
+        .project-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tech span {
+            padding: 0.3rem 0.7rem;
+            background: var(--bg-secondary);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            padding: 4rem;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .contact-desc {
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .contact-link-icon {
+            font-size: 1.25rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-primary);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 5rem 1.5rem 3rem;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .about,
+            .experience,
+            .contact {
+                padding: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
-
-<body class="antialiased selection:bg-neon selection:text-black">
-
-    <!-- Background Layer -->
-    <div class="fixed inset-0 z-[-1] bg-grid pointer-events-none"></div>
-    <div class="fixed inset-0 z-[-1] bg-gradient-to-b from-transparent via-zinc-950/80 to-zinc-950 pointer-events-none">
-    </div>
-
+<body>
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0">
-                    <a href="#" class="font-mono font-bold text-xl tracking-tighter hover:text-neon transition-colors">
-                        VS<span class="text-neon">.</span>DEV
-                    </a>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#skills" class="text-sm font-medium hover:text-neon transition-colors">SKILLS</a>
-                        <a href="#experience"
-                            class="text-sm font-medium hover:text-neon transition-colors">EXPERIENCE</a>
-                        <a href="#education" class="text-sm font-medium hover:text-neon transition-colors">EDUCATION</a>
-                        <a href="#projects" class="text-sm font-medium hover:text-neon transition-colors">PROJECTS</a>
-                        <a href="#contact" class="text-sm font-medium hover:text-neon transition-colors">CONTACT</a>
-                    </div>
-                </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-zinc-400 hover:text-white focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/5">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#skills"
-                    class="block px-3 py-2 text-base font-medium hover:text-neon hover:bg-white/5 rounded-md">SKILLS</a>
-                <a href="#experience"
-                    class="block px-3 py-2 text-base font-medium hover:text-neon hover:bg-white/5 rounded-md">EXPERIENCE</a>
-                <a href="#education"
-                    class="block px-3 py-2 text-base font-medium hover:text-neon hover:bg-white/5 rounded-md">EDUCATION</a>
-                <a href="#projects"
-                    class="block px-3 py-2 text-base font-medium hover:text-neon hover:bg-white/5 rounded-md">PROJECTS</a>
-                <a href="#contact"
-                    class="block px-3 py-2 text-base font-medium hover:text-neon hover:bg-white/5 rounded-md">CONTACT</a>
-            </div>
-        </div>
+    <nav>
+        <a href="#" class="nav-logo"><span>VS</span></a>
+        <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="Vardhan_Seepala_Resume_0225.pdf" class="nav-cta" download>Resume</a></li>
+        </ul>
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center z-10">
-            <div
-                class="inline-flex items-center px-3 py-1 rounded-full border border-neon/30 bg-neon/5 text-neon text-xs font-mono mb-8 animate-pulse-slow">
-                <span class="w-2 h-2 rounded-full bg-neon mr-2"></span>
-                SYSTEM ONLINE
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Available for opportunities
             </div>
-
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
-                Vardhan <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-neon to-cyan-600">Seepala</span>
-            </h1>
-
-            <p class="text-xl md:text-2xl text-zinc-400 font-light max-w-2xl mb-4 font-mono">
-                Lead Data Engineer | Data Systems Architect
-            </p>
-
-            <p class="text-zinc-500 max-w-xl mb-10 leading-relaxed">
-                Building scalable, secure data platforms across AWS, Azure, and GCP. Focused on measurable impact: lower
-                cost, faster insight, higher reliability.
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-4">
-                <a href="Vardhan_Seepala_Resume_.pdf" target="_blank"
-                    class="group relative px-8 py-3 bg-neon/10 text-neon font-bold rounded-lg border border-neon overflow-hidden transition-all hover:bg-neon hover:text-black focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-zinc-950">
-                    <span class="relative z-10">VIEW RESUME</span>
-                    <div
-                        class="absolute inset-0 bg-neon transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300">
-                    </div>
-                </a>
-                <a href="#contact"
-                    class="px-8 py-3 bg-zinc-800 text-white font-bold rounded-lg border border-zinc-700 hover:border-zinc-500 hover:bg-zinc-700 transition-all focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-950">
-                    CONNECT
-                </a>
+            <h1>Hi, I'm <span class="gradient-text">Vardhan Seepala</span></h1>
+            <p class="hero-subtitle">Lead Data Engineer specializing in cloud-native data platforms, real-time streaming pipelines, and MLOps. I transform complex data challenges into scalable, cost-efficient solutions.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get in Touch →</a>
+                <a href="Vardhan_Seepala_Resume_0225.pdf" class="btn btn-secondary" download>View Resume</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50%</div>
+                    <div class="stat-label">Cost Reduction</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Cloud Platforms</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1M+</div>
+                    <div class="stat-label">Daily Events Processed</div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- Decorative Elements -->
-        <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neon/5 rounded-full blur-[100px] pointer-events-none">
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-header fade-in">
+            <span class="section-label">About</span>
+            <h2 class="section-title">All Things Data</h2>
+            <p class="section-desc">Passionate about building data systems that drive real business impact</p>
+        </div>
+        <div class="about fade-in">
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I'm a Lead Data Engineer with 5+ years of experience designing, building, and optimizing data platforms that deliver business value at scale. Currently at Viral Nation, I architect end-to-end cloud-native solutions across GCP, Azure, and AWS.</p>
+                    <p>My expertise spans real-time streaming pipelines with Apache Beam and Kafka, automated infrastructure with Terraform, and production ML deployments via MLOps. I thrive on translating complex business requirements into secure, maintainable data architectures.</p>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon">☁️</div>
+                        <div class="highlight-text">
+                            <h4>Multi-Cloud Architecture</h4>
+                            <p>GCP, Azure, AWS expertise</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">⚡</div>
+                        <div class="highlight-text">
+                            <h4>Real-Time Pipelines</h4>
+                            <p>Streaming with Beam & Kafka</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">🤖</div>
+                        <div class="highlight-text">
+                            <h4>MLOps & AI</h4>
+                            <p>Production model deployment</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">📉</div>
+                        <div class="highlight-text">
+                            <h4>Cost Optimization</h4>
+                            <p>30-50% cost reduction track record</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-extrabold text-white mb-12 flex items-center">
-                <span class="text-neon mr-4 font-mono">01.</span> CORE COMPETENCIES
-                <div class="h-px bg-zinc-800 flex-grow ml-6"></div>
-            </h2>
-
-            <!-- Top Skills Progress -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-                <div class="space-y-6">
-                    <h3 class="text-xl font-mono text-zinc-400 mb-4">PRIMARY STACK</h3>
-
-                    <div class="group">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-mono text-sm text-zinc-300">Python / PySpark</span>
-                            <span class="font-mono text-sm text-neon">95%</span>
-                        </div>
-                        <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                            <div class="h-full bg-neon w-[95%] shadow-[0_0_10px_rgba(0,255,255,0.5)]"></div>
-                        </div>
-                    </div>
-
-                    <div class="group">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-mono text-sm text-zinc-300">Cloud Architecture (AWS/Azure/GCP)</span>
-                            <span class="font-mono text-sm text-neon">90%</span>
-                        </div>
-                        <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                            <div class="h-full bg-neon w-[90%] shadow-[0_0_10px_rgba(0,255,255,0.5)]"></div>
-                        </div>
-                    </div>
-
-                    <div class="group">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-mono text-sm text-zinc-300">SQL / Data Modeling</span>
-                            <span class="font-mono text-sm text-neon">95%</span>
-                        </div>
-                        <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                            <div class="h-full bg-neon w-[95%] shadow-[0_0_10px_rgba(0,255,255,0.5)]"></div>
-                        </div>
-                    </div>
+    <section id="skills">
+        <div class="section-header fade-in">
+            <span class="section-label">Skills</span>
+            <h2 class="section-title">Technologies & Tools</h2>
+            <p class="section-desc">The stack I use to build scalable data solutions</p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card fade-in">
+                <div class="skill-card-header">
+                    <div class="skill-icon">☁️</div>
+                    <h3>Cloud Platforms</h3>
                 </div>
-
-                <!-- Skill Tags -->
-                <div class="glass-panel p-6 rounded-xl">
-                    <h3 class="text-xl font-mono text-zinc-400 mb-6">TECHNOLOGY MATRIX</h3>
-
-                    <div class="space-y-4">
-                        <div>
-                            <span
-                                class="text-xs font-bold text-zinc-500 uppercase tracking-wider block mb-2">Languages</span>
-                            <div class="flex flex-wrap gap-2">
-                                <span
-                                    class="px-3 py-1 rounded-md border border-zinc-700 bg-zinc-900/50 text-sm text-zinc-300 hover:border-neon hover:text-neon transition-colors cursor-default">Python</span>
-                                <span
-                                    class="px-3 py-1 rounded-md border border-zinc-700 bg-zinc-900/50 text-sm text-zinc-300 hover:border-neon hover:text-neon transition-colors cursor-default">SQL</span>
-                                <span
-                                    class="px-3 py-1 rounded-md border border-zinc-700 bg-zinc-900/50 text-sm text-zinc-300 hover:border-neon hover:text-neon transition-colors cursor-default">Java</span>
-                                <span
-                                    class="px-3 py-1 rounded-md border border-zinc-700 bg-zinc-900/50 text-sm text-zinc-300 hover:border-neon hover:text-neon transition-colors cursor-default">Scala</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <span class="text-xs font-bold text-zinc-500 uppercase tracking-wider block mb-2">Data
-                                Engineering</span>
-                            <div class="flex flex-wrap gap-2">
-                                <span
-                                    class="px-3 py-1 rounded-md border border-zinc-700 bg-zinc-900/50 text-sm text-zinc-300 hover:border-neon hover:text-neon transition-colors cursor-default">Spark</span>
-                                <span
-                                    class="px-3 py-1 rounded-md border border-zinc-700 bg-zinc-900/50 text-sm text-zinc-300 hover:border-neon hover:text-neon transition-colors cursor-default">Airflow</span>
-                                <span
-                                    class="px-3 py-1 rounded-md border border-zinc-700 bg-zinc-900/50 text-sm text-zinc-300 hover:border-neon hover:text-neon transition-colors cursor-default">Kafka</span>
-                                <span
-                                    class="px-3 py-1 rounded-md border border-zinc-700 bg-zinc-900/50 text-sm text-zinc-300 hover:border-neon hover:text-neon transition-colors cursor-default">dbt</span>
-                                <span
-                                    class="px-3 py-1 rounded-md border border-zinc-700 bg-zinc-900/50 text-sm text-zinc-300 hover:border-neon hover:text-neon transition-colors cursor-default">Databricks</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <span
-                                class="text-xs font-bold text-zinc-500 uppercase tracking-wider block mb-2">Infrastructure</span>
-                            <div class="flex flex-wrap gap-2">
-                                <span
-                                    class="px-3 py-1 rounded-md border border-zinc-700 bg-zinc-900/50 text-sm text-zinc-300 hover:border-neon hover:text-neon transition-colors cursor-default">Terraform</span>
-                                <span
-                                    class="px-3 py-1 rounded-md border border-zinc-700 bg-zinc-900/50 text-sm text-zinc-300 hover:border-neon hover:text-neon transition-colors cursor-default">Docker</span>
-                                <span
-                                    class="px-3 py-1 rounded-md border border-zinc-700 bg-zinc-900/50 text-sm text-zinc-300 hover:border-neon hover:text-neon transition-colors cursor-default">Kubernetes</span>
-                                <span
-                                    class="px-3 py-1 rounded-md border border-zinc-700 bg-zinc-900/50 text-sm text-zinc-300 hover:border-neon hover:text-neon transition-colors cursor-default">CI/CD</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">GCP</span>
+                    <span class="skill-tag">BigQuery</span>
+                    <span class="skill-tag">Dataflow</span>
+                    <span class="skill-tag">Datastream</span>
+                    <span class="skill-tag">Azure</span>
+                    <span class="skill-tag">ADF</span>
+                    <span class="skill-tag">Synapse</span>
+                    <span class="skill-tag">Databricks</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">EMR</span>
+                    <span class="skill-tag">Lambda</span>
+                    <span class="skill-tag">S3</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-card-header">
+                    <div class="skill-icon">💻</div>
+                    <h3>Languages & Frameworks</h3>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">PySpark</span>
+                    <span class="skill-tag">Apache Beam</span>
+                    <span class="skill-tag">dbt</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">Terraform</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-card-header">
+                    <div class="skill-icon">🔄</div>
+                    <h3>Orchestration & Streaming</h3>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Airflow</span>
+                    <span class="skill-tag">Kafka</span>
+                    <span class="skill-tag">Pub/Sub</span>
+                    <span class="skill-tag">Azure ML Studio</span>
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">Docker</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-card-header">
+                    <div class="skill-icon">🗄️</div>
+                    <h3>Databases & Storage</h3>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">MS-SQL</span>
+                    <span class="skill-tag">NoSQL</span>
+                    <span class="skill-tag">KQL</span>
+                    <span class="skill-tag">Cloud SQL</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-card-header">
+                    <div class="skill-icon">📊</div>
+                    <h3>Visualization & Analytics</h3>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Looker</span>
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">Azure Data Explorer</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="skill-card-header">
+                    <div class="skill-icon">🔧</div>
+                    <h3>DevOps & CI/CD</h3>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">GitHub Actions</span>
+                    <span class="skill-tag">CloudFormation</span>
+                    <span class="skill-tag">Datadog</span>
+                    <span class="skill-tag">Elasticsearch</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-zinc-900/30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-extrabold text-white mb-12 flex items-center">
-                <span class="text-neon mr-4 font-mono">02.</span> PROFESSIONAL TRACK RECORD
-                <div class="h-px bg-zinc-800 flex-grow ml-6"></div>
-            </h2>
-
-            <div class="relative border-l border-zinc-800 ml-3 md:ml-6 space-y-12">
-
-                <!-- Role 1 -->
-                <div class="relative pl-8 md:pl-12 group">
-                    <div
-                        class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-zinc-800 border border-zinc-600 group-hover:bg-neon group-hover:border-neon transition-colors shadow-[0_0_0_4px_rgba(10,10,10,1)]">
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                        <h3 class="text-xl font-bold text-white group-hover:text-neon transition-colors">Lead Data
-                            Engineer</h3>
-                        <span class="font-mono text-sm text-zinc-500">Jun 2023 – Present</span>
-                    </div>
-                    <div class="text-lg text-zinc-400 mb-4 font-medium">Viral Nation</div>
-
-                    <div class="glass-panel p-6 rounded-lg neon-border">
-                        <ul class="space-y-3 text-zinc-400">
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Spearheaded CDC pipelines (Cloud SQL → BigQuery) using Datastream, reducing
-                                    transformation overhead by <span class="text-white font-bold">40%</span>.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Deployed Terraform templates to configure Datastream on a private VPC, slashing
-                                    manual setup time by <span class="text-white font-bold">50%</span>.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Engineered DBT models unifying 10+ data sources, reducing data errors by <span
-                                        class="text-white font-bold">80%</span>.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Architected Dataflow pipelines streaming MongoDB/PostgreSQL data to BigQuery for
-                                    near real-time decision-making.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Led deployment of brand detection models via Kafka for <span
-                                        class="text-white font-bold">1M+</span> daily interactions.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Built CI/CD pipelines for AI model deployment, cutting time-to-market by <span
-                                        class="text-white font-bold">35%</span>.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Optimized PySpark-based ETL pipelines in Azure Synapse, enabling real-time
-                                    campaign performance insights.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Role 2 -->
-                <div class="relative pl-8 md:pl-12 group">
-                    <div
-                        class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-zinc-800 border border-zinc-600 group-hover:bg-neon group-hover:border-neon transition-colors shadow-[0_0_0_4px_rgba(10,10,10,1)]">
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                        <h3 class="text-xl font-bold text-white group-hover:text-neon transition-colors">Data Engineer /
-                            Analyst Co-Op</h3>
-                        <span class="font-mono text-sm text-zinc-500">Jan 2023 – Apr 2023</span>
-                    </div>
-                    <div class="text-lg text-zinc-400 mb-4 font-medium">BDO</div>
-
-                    <div class="glass-panel p-6 rounded-lg neon-border">
-                        <ul class="space-y-3 text-zinc-400">
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Redesigned Azure Data Factory pipelines, reducing processing time from 13 to 9
-                                    hours (<span class="text-white font-bold">30%</span> cost savings).</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Developed Power BI dashboards integrating MQTT server data with digital twin
-                                    metrics for real-time production tracking.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Automated KQL query generation, accelerating data extraction by <span
-                                        class="text-white font-bold">25%</span>.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Role 3 -->
-                <div class="relative pl-8 md:pl-12 group">
-                    <div
-                        class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-zinc-800 border border-zinc-600 group-hover:bg-neon group-hover:border-neon transition-colors shadow-[0_0_0_4px_rgba(10,10,10,1)]">
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                        <h3 class="text-xl font-bold text-white group-hover:text-neon transition-colors">Senior Software
-                            Engineer</h3>
-                        <span class="font-mono text-sm text-zinc-500">Aug 2019 – Dec 2021</span>
-                    </div>
-                    <div class="text-lg text-zinc-400 mb-4 font-medium">Oracle Cerner</div>
-
-                    <div class="glass-panel p-6 rounded-lg neon-border">
-                        <ul class="space-y-3 text-zinc-400">
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Designed AWS EMR pipelines, reducing processing costs by <span
-                                        class="text-white font-bold">30%</span> and runtime by 50%.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Streamlined AWS IAM role creation via CloudFormation, reducing manual errors by
-                                    <span class="text-white font-bold">90%</span>.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Built automated testing scripts (Java/Python), cutting integration testing time by
-                                    <span class="text-white font-bold">70%</span>.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Standardized healthcare data using Java, Python, and microservices to meet global
-                                    compliance.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-neon mr-2 mt-1">▹</span>
-                                <span>Optimized AWS Glue ETL pipelines and managed Redshift clusters for large-scale
-                                    analytics.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
+    <section id="experience">
+        <div class="section-header fade-in">
+            <span class="section-label">Experience</span>
+            <h2 class="section-title">Where I've Worked</h2>
+            <p class="section-desc">A track record of delivering impactful data solutions</p>
         </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="py-20 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-extrabold text-white mb-12 flex items-center">
-                <span class="text-neon mr-4 font-mono">03.</span> EDUCATION
-                <div class="h-px bg-zinc-800 flex-grow ml-6"></div>
-            </h2>
-
-            <div class="glass-panel rounded-xl p-8 neon-border space-y-8">
-                <!-- Master's -->
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
-                    <div>
-                        <h3 class="text-2xl font-bold text-white mb-1">University of Windsor</h3>
-                        <p class="text-zinc-400 text-base mb-2">Windsor, ON, Canada</p>
-                        <div class="flex items-center">
-                            <div class="w-2 h-2 rounded-full bg-neon mr-3"></div>
-                            <p class="text-zinc-200 text-lg font-medium">Master of Applied Computing</p>
-                        </div>
+        <div class="experience fade-in">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="timeline-role">Lead Data Engineer</h3>
+                        <span class="timeline-company">@ Viral Nation</span>
+                        <p class="timeline-date">Jun 2023 – Present</p>
                     </div>
+                    <ul class="timeline-achievements">
+                        <li>Designed CDC pipelines (Cloud SQL → BigQuery) using GCP Datastream, reducing transformation overhead by 40%</li>
+                        <li>Automated infrastructure via Terraform with private VPC provisioning, cutting setup time by 50%</li>
+                        <li>Built real-time Dataflow pipelines with Apache Beam for MongoDB/Postgres → BigQuery ingestion</li>
+                        <li>Unified 10+ sources into dbt semantic layers, reducing analytics errors by 80%</li>
+                        <li>Led MLOps deployments via Azure ML Studio & Kubernetes, reducing time-to-market by 35%</li>
+                        <li>Built Kafka-based model-serving pipelines for brand detection (1M+ daily events)</li>
+                    </ul>
                 </div>
-
-                <!-- Bachelor's -->
-                <div
-                    class="flex flex-col md:flex-row justify-between items-start md:items-center border-t border-zinc-800 pt-8">
-                    <div>
-                        <h3 class="text-2xl font-bold text-white mb-1">Sir MVIT</h3>
-                        <p class="text-zinc-400 text-base mb-2">India</p>
-                        <div class="flex items-center">
-                            <div class="w-2 h-2 rounded-full bg-zinc-600 mr-3"></div>
-                            <p class="text-zinc-200 text-lg font-medium">Bachelor of Engineering in Computer Science</p>
-                        </div>
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="timeline-role">Data Engineer Co-Op</h3>
+                        <span class="timeline-company">@ BDO</span>
+                        <p class="timeline-date">Jan 2023 – Apr 2023</p>
                     </div>
+                    <ul class="timeline-achievements">
+                        <li>Rebuilt ADF pipelines, cutting processing time by 30% (13 → 9 hours)</li>
+                        <li>Built real-time Power BI dashboards integrating digital twin & MQTT metrics</li>
+                        <li>Automated Azure Data Explorer queries using dynamic KQL generation</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="timeline-role">Senior Software Engineer</h3>
+                        <span class="timeline-company">@ Oracle Cerner</span>
+                        <p class="timeline-date">Aug 2019 – Dec 2021</p>
+                    </div>
+                    <ul class="timeline-achievements">
+                        <li>Designed cost-optimized AWS EMR pipelines serving 10K+ patients daily</li>
+                        <li>Automated CloudFormation stacks for IAM roles, reducing provisioning errors by 90%</li>
+                        <li>Cut testing time by 70% with Java/Python test automation</li>
+                        <li>Standardized international healthcare data across microservice APIs</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="timeline-role">DevOps Engineering Intern</h3>
+                        <span class="timeline-company">@ Sigmoid</span>
+                        <p class="timeline-date">Apr 2019 – Jul 2019</p>
+                    </div>
+                    <ul class="timeline-achievements">
+                        <li>Built Datadog/Elasticsearch dashboards reducing AWS cluster downtime by 50%</li>
+                        <li>Created PoC demos for clients that cut cluster costs by 20%</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-zinc-900/30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-extrabold text-white mb-12 flex items-center">
-                <span class="text-neon mr-4 font-mono">04.</span> SELECTED PROJECTS
-                <div class="h-px bg-zinc-800 flex-grow ml-6"></div>
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                <!-- Project 1 -->
-                <div
-                    class="glass-panel rounded-xl p-6 hover:-translate-y-2 transition-transform duration-300 neon-border flex flex-col">
-                    <div class="flex justify-between items-start mb-4">
-                        <svg class="w-10 h-10 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                        </svg>
-                        <div class="flex space-x-4">
-                            <a href="https://github.com/seepala98" target="_blank"
-                                class="text-zinc-400 hover:text-neon transition-colors">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon">Multi-Cloud Migration</h3>
-                    <p class="text-zinc-400 text-sm mb-4 flex-grow">
-                        Orchestrated on-prem to AWS/Azure/GCP migration of 100TB+ data with zero downtime. Achieved 60%
-                        OpEx reduction.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="text-xs font-mono text-neon">Terraform</span>
-                        <span class="text-xs font-mono text-neon">Kubernetes</span>
-                        <span class="text-xs font-mono text-neon">Airflow</span>
+    <section id="projects">
+        <div class="section-header fade-in">
+            <span class="section-label">Projects</span>
+            <h2 class="section-title">Featured Work</h2>
+            <p class="section-desc">Some of the impactful projects I've built</p>
+        </div>
+        <div class="projects-grid" id="projects-container">
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <span class="project-icon">🔄</span>
+                    <div class="project-links">
+                        <a href="https://github.com/seepala98" target="_blank">GitHub →</a>
                     </div>
                 </div>
-
-                <!-- Project 2 -->
-                <div
-                    class="glass-panel rounded-xl p-6 hover:-translate-y-2 transition-transform duration-300 neon-border flex flex-col">
-                    <div class="flex justify-between items-start mb-4">
-                        <svg class="w-10 h-10 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-                        </svg>
-                        <div class="flex space-x-4">
-                            <a href="https://github.com/seepala98" target="_blank"
-                                class="text-zinc-400 hover:text-neon transition-colors">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon">Enterprise Data Vault 2.0</h3>
-                    <p class="text-zinc-400 text-sm mb-4 flex-grow">
-                        Consolidated 15+ systems into an auditable EDW. 10TB+ daily processing with 99.95% uptime.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="text-xs font-mono text-neon">Snowflake</span>
-                        <span class="text-xs font-mono text-neon">dbt</span>
-                        <span class="text-xs font-mono text-neon">Python</span>
-                    </div>
+                <h3>Real-Time CDC Data Pipeline</h3>
+                <p>Automated change data capture pipeline from Cloud SQL to BigQuery using GCP Datastream, enabling real-time analytics with 40% reduced transformation overhead.</p>
+                <div class="project-tech">
+                    <span>GCP</span>
+                    <span>Datastream</span>
+                    <span>BigQuery</span>
+                    <span>Terraform</span>
                 </div>
-
-                <!-- Project 3 -->
-                <div
-                    class="glass-panel rounded-xl p-6 hover:-translate-y-2 transition-transform duration-300 neon-border flex flex-col">
-                    <div class="flex justify-between items-start mb-4">
-                        <svg class="w-10 h-10 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                        </svg>
-                        <div class="flex space-x-4">
-                            <a href="https://github.com/seepala98" target="_blank"
-                                class="text-zinc-400 hover:text-neon transition-colors">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon">Medallion Data Lake</h3>
-                    <p class="text-zinc-400 text-sm mb-4 flex-grow">
-                        Designed Bronze/Silver/Gold lake on Azure Databricks processing 50TB+/day. Enabled 200+
-                        self-serve users.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="text-xs font-mono text-neon">Databricks</span>
-                        <span class="text-xs font-mono text-neon">Spark</span>
-                        <span class="text-xs font-mono text-neon">Azure</span>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div
-                    class="glass-panel rounded-xl p-6 hover:-translate-y-2 transition-transform duration-300 neon-border flex flex-col">
-                    <div class="flex justify-between items-start mb-4">
-                        <svg class="w-10 h-10 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                        <div class="flex space-x-4">
-                            <a href="https://github.com/seepala98" target="_blank"
-                                class="text-zinc-400 hover:text-neon transition-colors">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon">Real-time Marketing</h3>
-                    <p class="text-zinc-400 text-sm mb-4 flex-grow">
-                        Built Kafka → Dataflow → BigQuery pipeline handling 1M+ events/day with sub-30s latency.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="text-xs font-mono text-neon">Kafka</span>
-                        <span class="text-xs font-mono text-neon">BigQuery</span>
-                        <span class="text-xs font-mono text-neon">Looker</span>
-                    </div>
-                </div>
-
             </div>
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <span class="project-icon">🤖</span>
+                    <div class="project-links">
+                        <a href="https://github.com/seepala98" target="_blank">GitHub →</a>
+                    </div>
+                </div>
+                <h3>MLOps Model Deployment Platform</h3>
+                <p>End-to-end CI/CD pipeline for AI model deployment using Azure ML Studio and Kubernetes, cutting time-to-market by 35% and operational costs by 25%.</p>
+                <div class="project-tech">
+                    <span>Azure ML</span>
+                    <span>Kubernetes</span>
+                    <span>CI/CD</span>
+                    <span>Docker</span>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <span class="project-icon">📊</span>
+                    <div class="project-links">
+                        <a href="https://github.com/seepala98" target="_blank">GitHub →</a>
+                    </div>
+                </div>
+                <h3>Streaming Analytics Platform</h3>
+                <p>Real-time data pipeline processing 1M+ daily social media events using Kafka and Apache Beam for brand detection and content moderation.</p>
+                <div class="project-tech">
+                    <span>Kafka</span>
+                    <span>Apache Beam</span>
+                    <span>Python</span>
+                    <span>Dataflow</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="mt-12 text-center">
-                <a href="https://github.com/seepala98?tab=repositories" target="_blank"
-                    class="inline-flex items-center text-neon hover:text-white transition-colors font-mono text-sm">
-                    VIEW ALL REPOSITORIES <span class="ml-2">→</span>
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact fade-in">
+            <h2 class="contact-title">Let's Work Together</h2>
+            <p class="contact-desc">I'm always open to discussing new opportunities, interesting projects, or just chatting about data engineering.</p>
+            <div class="contact-links">
+                <a href="mailto:seepala2@gmail.com" class="contact-link">
+                    <span class="contact-link-icon">📧</span>
+                    Email Me
+                </a>
+                <a href="https://github.com/seepala98" target="_blank" class="contact-link">
+                    <span class="contact-link-icon">💻</span>
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/vardhan-seepala/" target="_blank" class="contact-link">
+                    <span class="contact-link-icon">🔗</span>
+                    LinkedIn
+                </a>
+                <a href="Vardhan_Seepala_Resume_0225.pdf" class="contact-link" download>
+                    <span class="contact-link-icon">📄</span>
+                    Resume
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="py-12 border-t border-white/5 bg-zinc-950">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0 text-center md:text-left">
-                    <h2 class="text-2xl font-bold text-white mb-2">Let's Build Something Scalable</h2>
-                    <p class="text-zinc-400">Open for opportunities in Data Engineering & Architecture.</p>
-                </div>
-
-                <div class="flex space-x-6">
-                    <a href="mailto:seepalavardhan98@gmail.com" class="text-zinc-400 hover:text-neon transition-colors">
-                        <span class="sr-only">Email</span>
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/vardhan-seepala-71179710b/" target="_blank"
-                        class="text-zinc-400 hover:text-neon transition-colors">
-                        <span class="sr-only">LinkedIn</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                        </svg>
-                    </a>
-                    <a href="https://github.com/seepala98" target="_blank"
-                        class="text-zinc-400 hover:text-neon transition-colors">
-                        <span class="sr-only">GitHub</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <div
-                class="mt-8 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-600 font-mono">
-                <p>&copy; 2025 Vardhan Seepala. All rights reserved.</p>
-                <div class="flex items-center mt-4 md:mt-0">
-                    <span class="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
-                    SYSTEM STATUS: ONLINE
-                </div>
-            </div>
-        </div>
+    <footer>
+        <p>Built by Vardhan Seepala • © 2026</p>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
 
-        // Smooth Scroll for Anchor Links (Polyfill-like behavior)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                menu.classList.add('hidden'); // Close mobile menu on click
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
             });
         });
 
-        // Intersection Observer for Fade-in Animations
+        // Scroll animations
         const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver((entries, observer) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-float'); // Example animation trigger
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target);
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
-        // Add fade-in styles to sections
-        document.querySelectorAll('section').forEach(section => {
-            // section.style.opacity = 0;
-            // section.style.transform = 'translateY(20px)';
-            // section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-            // observer.observe(section);
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active nav link highlighting
+        const sections = document.querySelectorAll('section[id]');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
         });
     </script>
 </body>
-
 </html>
